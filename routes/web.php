@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\driverController;
+use App\Http\Controllers\Admin\paketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 
@@ -26,3 +28,15 @@ Route::post('post-registration', [AuthController::class, 'postRegistration'])->n
 Route::get('dashboard', [AuthController::class, 'dashboard']);
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('paket-list', [AuthController::class, 'paket-list'])->name('paket-list');
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('paket', [paketController::class, 'index'])->name('admin/paket');
+        Route::get('driver', [driverController::class, 'index'])->name('admin/driver');
+    });
+    // your routes
+});
+// Route::group(['middleware' => 'auth'], function () {
+    // Route::group(['prefix' => 'admin'], function () {
+    // });
+// });
