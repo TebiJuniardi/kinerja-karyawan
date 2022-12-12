@@ -359,6 +359,35 @@
             $('#myTable').DataTable();
         } );
     </script>
+    <script type="text/javascript">
+        // SweetAlert Toast example
+        function showToast(type, message) {
+            window.toast.fire({
+                icon: type,
+                type: type,
+                title: message,
+            });
+        }
+
+        // SweetAlert Alert Example
+        function showAlert(title, message, type) {
+            window.swal.fire({
+                title: "Response Message",
+                text: title,
+                type: type,
+                confirmButtonText: "OK",
+                html: message,
+                // cancelButtonText: "Cancel",
+                showCancelButton: false,
+            }).then(console.log)
+                .catch(console.error);
+        }
+
+        @if(session()->has('message'))
+            showToast({{ strtolower(session('message')['type']) }}, {{ session('message')['text'] }});
+        @endif
+
+    </script>
 </body>
 
 </html>

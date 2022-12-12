@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('paket', [paketController::class, 'index'])->name('admin/paket');
         Route::get('driver', [driverController::class, 'index'])->name('admin/driver');
+        Route::post('create-driver', [driverController::class, 'createDriver'])->name('admin/createdriver');
     });
     // your routes
 });
