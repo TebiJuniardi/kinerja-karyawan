@@ -40,7 +40,64 @@
                                     <td>{{$row->plat_nomor}}</td>
                                     <td>{{$row->email}}</td>
                                     <td>{{$row->alamat}}</td>
-                                    <td></td>
+                                    <td>
+                                      <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditModalDriver{{$row->nik}}" data-nik="{{ $row->nik }}"><i class="tf-icons bx bx-edit"></i></a>
+                                      <button type="button" onclick="return del('{{ $row->nik }}')" class="btn btn-danger btn-flat" data-toggle="tooltip" title='Delete'>
+                                        <i class="tf-icons bx bx-trash"></i>
+                                      </button>
+
+                                      <div class="modal fade" id="EditModalDriver{{$row->nik}}" tabindex="-1" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel1">Edit Driver</h5>
+                                              <button
+                                                type="button"
+                                                class="btn-close"
+                                                data-bs-dismiss="modal"
+                                                aria-label="Close"
+                                              ></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="{{route('admin/editdriver')}}" method="post">
+                                                    @csrf
+                                                    <div class="col mb-5">
+                                                        <div class="col mb-3">
+                                                          <label for="nik" class="form-label">NIK</label>
+                                                          <input type="text" name="nik" id="nik" class="form-control" placeholder="000001" required value="{{$row->nik}}" />
+                                                        </div>
+                                                        <div class="col mb-3">
+                                                          <label for="nama_driver" class="form-label">Nama Driver</label>
+                                                          <input type="text" name="nama_driver" id="nama_driver" class="form-control" placeholder="Type Here" required value="{{$row->nama_lengkap}}" />
+                                                        </div>
+                                                        <div class="col mb-3">
+                                                          <label for="plat_nomor" class="form-label">Plat Nomor</label>
+                                                          <input type="text" name="plat_nomor" id="plat_nomor" class="form-control" placeholder="Type Here" required value="{{$row->plat_nomor}}" />
+                                                        </div>
+                                                        <div class="col mb-3">
+                                                          <label for="email" class="form-label">Email</label>
+                                                          <input type="email" name="email" id="email" class="form-control" placeholder="Type Here" required value="{{$row->email}}"/>
+                                                        </div>
+                                                        <div class="col mb-3">
+                                                            <label for="alamat" class="form-label">Alamat</label>
+                                                            <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{$row->alamat}}</textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <button type="submit" class="btn btn-primary">Save changes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            {{-- <div class="modal-footer">
+                                              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                                Close
+                                              </button>
+                                              <button type="button" class="btn btn-primary">Save changes</button>
+                                            </div> --}}
+                                          </div>
+                                        </div>
+                                    </div>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -103,4 +160,44 @@
       </div>
     </div>
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.9/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+  function del(id) {
+    Swal.fire({
+      title: 'Apakah anda yakin?',
+      text: "Data yang telah dihapus tidak dapat dikembalikan lagi!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.value) {
+        window.location.href = "{{ url('admin/delete-driver') }}"+'/'+id;
+      }
+    })
+  }
+</script>
+{{-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<script type="text/javascript">
+  function del(id) {
+    Swal.fire({
+    title: 'Apakah anda yakin?',
+    text: "Data yang telah dihapus tidak dapat dikembalikan lagi!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Hapus',
+    cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.value) {
+          window.location.href = "{{ url('admin/delete-driver') }}"+'/'+id;
+      }
+    })
+  }
+</script> --}}
 @endsection

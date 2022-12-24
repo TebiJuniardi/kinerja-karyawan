@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="{{ asset('assets/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
     <!-- dataTable -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css" />
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet"> --}}
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" /> --}}
 
@@ -162,8 +163,7 @@
                     <!-- Misc -->
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Driver</span></li>
                     <li class="menu-item">
-                        <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                            target="_blank" class="menu-link">
+                        <a href="{{route('admin/jadwal-pengiriman')}}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-timer"></i>
                             {{-- <box-icon type='solid' name='timer'></box-icon> --}}
                             <div data-i18n="Support">Jadwal Pengiriman</div>
@@ -171,8 +171,7 @@
                     </li>
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Pelanggan</span></li>
                     <li class="menu-item">
-                        <a href="#"
-                            target="_blank" class="menu-link">
+                        <a href="{{route('pelanggan/status-paket')}}" class="menu-link">
                             {{-- <i class="menu-icon tf-icons bx bx-support"></i> --}}
                             <i class='menu-icon tf-icons bx bx-package' ></i>
                             <div data-i18n="Support">Paket</div>
@@ -288,6 +287,7 @@
                     <!-- Content -->
 
                     @yield('body')
+                    @include('sweetalert::alert')
                     <!-- / Content -->
 
                     <!-- Footer -->
@@ -351,6 +351,7 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
     {{-- <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script async defer src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script async defer src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script> --}}
@@ -368,20 +369,25 @@
                 title: message,
             });
         }
+        $('#show_confirm_driver').click(function(event) {
+            var form =  $(this).closest("form");
+            var name = $(this).data("name");
+            event.preventDefault();
+            swal({
+                title: "Are you sure you want to delete this record?",
+                text: "If you delete this, it will be gone forever.",
+                icon: "warning",
+                type: "warning",
+                buttons: ["Cancel","Yes!"],
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((willDelete) => {
+                if (willDelete) {
 
-        // SweetAlert Alert Example
-        function showAlert(title, message, type) {
-            window.swal.fire({
-                title: "Response Message",
-                text: title,
-                type: type,
-                confirmButtonText: "OK",
-                html: message,
-                // cancelButtonText: "Cancel",
-                showCancelButton: false,
-            }).then(console.log)
-                .catch(console.error);
-        }
+                }
+            });
+        });
 
         @if(session()->has('message'))
             showToast({{ strtolower(session('message')['type']) }}, {{ session('message')['text'] }});

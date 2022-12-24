@@ -23,14 +23,93 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Jenis Paket</th>
                                 <th>No Resi</th>
                                 <th>Berat</th>
                                 <th>Alamat</th>
+                                <th>Nama Penerima</th>
+                                <th>No Telepon Penerima</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
+                        <tbody>
+                          @foreach ($data as $row)
+                              <tr>
+                                <td>{{$no++}}</td>
+                                <td>{{$row->no_resi}}</td>
+                                <td>{{$row->berat}} kg</td>
+                                <td>{{$row->alamat}}</td>
+                                <td>{{$row->nama_penerima}}</td>
+                                <td>{{$row->no_tlpn_user}}</td>
+                                <td>
+                                  @if ($row->status == '0')
+                                    Pending
+                                  @else
+                                    Selesai
+                                  @endif
+                                </td>
+                                <td>
+                                  <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditModalPaket{{$row->id}}" data-id="{{ $row->id }}"><i class="tf-icons bx bx-edit"></i></a>
+                                  <button type="button" onclick="return del('{{ $row->id }}')" class="btn btn-danger btn-flat" data-toggle="tooltip" title='Delete'>
+                                    <i class="tf-icons bx bx-trash"></i>
+                                  </button>
+
+                                  <div class="modal fade" id="EditModalPaket{{$row->id}}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                      <div class="modal-content">
+                                        <div class="modal-header">
+                                          <h5 class="modal-title" id="exampleModalLabel1">Paket</h5>
+                                          <button
+                                            type="button"
+                                            class="btn-close"
+                                            data-bs-dismiss="modal"
+                                            aria-label="Close"
+                                          ></button>
+                                        </div>
+                                        <div class="modal-body">
+                                          <form action="{{route('admin/editpaket')}}" method="post">
+                                            @csrf
+                                            <div class="col mb-5">
+                                              <div class="col mb-3">
+                                                <label for="no_resi" class="form-label">No Resi</label>
+                                                <input type="hidden" name="id" id="id" class="form-control" placeholder="XXXXXX" required value="{{$row->id}}"/>
+                                                <input type="text" name="no_resi" id="no_resi" class="form-control" placeholder="XXXXXX" required value="{{$row->no_resi}}"/>
+                                              </div>
+                                              <div class="col mb-3">
+                                                <label for="alamat" class="form-label">Alamat</label>
+                                                <textarea class="form-control" id="alamat" name="alamat" rows="3" required>{{$row->alamat}}</textarea>
+                                              </div>
+                                              <div class="col mb-3">
+                                                <label for="nama_penerima" class="form-label">Nama Penerima</label>
+                                                <input type="text" name="nama_penerima" id="nama_penerima" class="form-control" placeholder="Type Here" required value="{{$row->nama_penerima}}" />
+                                              </div>
+                                              <div class="col mb-3">
+                                                <label for="no_tlpn" class="form-label">No Telepon Penerima</label>
+                                                <input type="text" name="no_tlpn" id="no_tlpn" class="form-control" placeholder="Type Here" required value="{{$row->no_tlpn_user}}" />
+                                              </div>
+                                              <div class="col mb-3">
+                                                <label for="berat" class="form-label">Berat (/Kg)</label>
+                                                <input type="number" name="berat" id="berat" class="form-control" placeholder="Type Here" required value="{{$row->berat}}"/>
+                                              </div>
+                                            </div>
+                                            <div>
+                                              <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                          </form>
+                                        </div>
+                                        {{-- <div class="modal-footer">
+                                          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                            Close
+                                          </button>
+                                          <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div> --}}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </td>
+                              </tr>
+                          @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -50,28 +129,28 @@
           ></button>
         </div>
         <div class="modal-body">
-            <form action="{{route('admin/createdriver')}}" method="post">
+            <form action="{{route('admin/createpaket')}}" method="post">
                 @csrf
                 <div class="col mb-5">
                     <div class="col mb-3">
-                      <label for="nik" class="form-label">NIK</label>
-                      <input type="text" name="nik" id="nik" class="form-control" placeholder="000001" required />
+                      <label for="no_resi" class="form-label">No Resi</label>
+                      <input type="text" name="no_resi" id="no_resi" class="form-control" placeholder="XXXXXX" required />
                     </div>
                     <div class="col mb-3">
-                      <label for="nama_driver" class="form-label">Nama Driver</label>
-                      <input type="text" name="nama_driver" id="nama_driver" class="form-control" placeholder="Type Here" required />
+                      <label for="alamat" class="form-label">Alamat</label>
+                      <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
                     </div>
                     <div class="col mb-3">
-                      <label for="plat_nomor" class="form-label">Plat Nomor</label>
-                      <input type="text" name="plat_nomor" id="plat_nomor" class="form-control" placeholder="Type Here" required />
+                      <label for="nama_penerima" class="form-label">Nama Penerima</label>
+                      <input type="text" name="nama_penerima" id="nama_penerima" class="form-control" placeholder="Type Here" required />
                     </div>
                     <div class="col mb-3">
-                      <label for="email" class="form-label">Email</label>
-                      <input type="email" name="email" id="email" class="form-control" placeholder="Type Here" required />
+                      <label for="no_tlpn" class="form-label">No Telepon Penerima</label>
+                      <input type="text" name="no_tlpn" id="no_tlpn" class="form-control" placeholder="Type Here" required />
                     </div>
                     <div class="col mb-3">
-                        <label for="alamat" class="form-label">Alamat</label>
-                        <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
+                      <label for="berat" class="form-label">Berat (/Kg)</label>
+                      <input type="number" name="berat" id="berat" class="form-control" placeholder="Type Here" required />
                     </div>
                 </div>
                 <div>
@@ -88,4 +167,24 @@
       </div>
     </div>
 </div>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9.10.9/dist/sweetalert2.all.min.js"></script>
+<script type="text/javascript">
+  function del(id) {
+    Swal.fire({
+      title: 'Apakah anda yakin?'+id,
+      text: "Data yang telah dihapus tidak dapat dikembalikan lagi!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Hapus',
+      cancelButtonText: 'Batal'
+    }).then((result) => {
+      if (result.value) {
+        window.location.href = "{{ url('admin/delete-paket') }}"+'/'+id;
+      }
+    })
+  }
+</script>
 @endsection

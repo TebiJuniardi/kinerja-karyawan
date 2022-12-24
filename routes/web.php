@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\driverController;
+use App\Http\Controllers\Admin\jadwalController;
 use App\Http\Controllers\Admin\paketController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
@@ -32,8 +33,21 @@ Route::get('paket-list', [AuthController::class, 'paket-list'])->name('paket-lis
 Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('paket', [paketController::class, 'index'])->name('admin/paket');
+        Route::post('create-paket', [paketController::class, 'createPaket'])->name('admin/createpaket');
+        Route::post('edit-paket', [paketController::class, 'editPaket'])->name('admin/editpaket');
+        Route::get('delete-paket/{nik}', [paketController::class, 'deletePaket']);
+
         Route::get('driver', [driverController::class, 'index'])->name('admin/driver');
         Route::post('create-driver', [driverController::class, 'createDriver'])->name('admin/createdriver');
+        Route::post('edit-driver', [driverController::class, 'editDriver'])->name('admin/editdriver');
+        Route::get('delete-driver/{nik}', [driverController::class, 'deleteDriver']);
+
+        Route::get('jadwal-pengiriman', [jadwalController::class, 'index'])->name('admin/jadwal-pengiriman');
+        Route::post('create-jadwal-pengiriman', [jadwalController::class, 'creteScheduleSent'])->name('admin/createjadwalkirim');
+    });
+    Route::group(['prefix' => 'pelanggan'], function () {
+        Route::get('paket', [paketController::class, 'paketPelanggan'])->name('pelanggan/status-paket');
+
     });
     // your routes
 });
