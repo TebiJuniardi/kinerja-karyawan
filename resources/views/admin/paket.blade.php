@@ -25,7 +25,10 @@
                                 <th>No</th>
                                 <th>No Resi</th>
                                 <th>Berat</th>
-                                <th>Alamat</th>
+                                <th>Alamat Pengrim</th>
+                                <th>Nama Pengrim</th>
+                                <th>No Telepon Pengrim</th>
+                                <th>Alamat Penerima</th>
                                 <th>Nama Penerima</th>
                                 <th>No Telepon Penerima</th>
                                 <th>Status</th>
@@ -38,6 +41,9 @@
                                 <td>{{$no++}}</td>
                                 <td>{{$row->no_resi}}</td>
                                 <td>{{$row->berat}} kg</td>
+                                <td>{{$row->alamat_pengirim}}</td>
+                                <td>{{$row->nama_pengirim}}</td>
+                                <td>{{$row->no_tlpn_pengirim}}</td>
                                 <td>{{$row->alamat}}</td>
                                 <td>{{$row->nama_penerima}}</td>
                                 <td>{{$row->no_tlpn_user}}</td>
@@ -49,7 +55,7 @@
                                   @endif
                                 </td>
                                 <td>
-                                  <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#EditModalPaket{{$row->id}}" data-id="{{ $row->id }}"><i class="tf-icons bx bx-edit"></i></a>
+                                  <a href="#" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#EditModalPaket{{$row->id}}" data-id="{{ $row->id }}"><i class="tf-icons bx bx-edit"></i></a>
                                   <button type="button" onclick="return del('{{ $row->id }}')" class="btn btn-danger btn-flat" data-toggle="tooltip" title='Delete'>
                                     <i class="tf-icons bx bx-trash"></i>
                                   </button>
@@ -135,6 +141,18 @@
                     <div class="col mb-3">
                       <label for="no_resi" class="form-label">No Resi</label>
                       <input type="text" name="no_resi" id="no_resi" class="form-control" placeholder="XXXXXX" required />
+                    </div>
+                    <div class="col mb-3">
+                      <label for="alamat_pengirim" class="form-label">Alamat Pengirim</label>
+                      <textarea class="form-control" id="alamat_pengirim" name="alamat_pengirim" rows="3" required></textarea>
+                    </div>
+                    <div class="col mb-3">
+                        <label for="nama_penerima" class="form-label">Nama Pengirim</label>
+                        <input type="text" name="nama_pengirim" id="nama_pengirim" class="form-control" placeholder="Type Here" required />
+                    </div>
+                    <div class="col mb-3">
+                        <label for="no_tlpn_pengirim" class="form-label">No Telepon Pengirim</label>
+                        <input type="text" name="no_tlpn_pengirim" id="no_tlpn_pengirim" class="form-control" placeholder="Type Here" required />
                     </div>
                     <div class="col mb-3">
                       <label for="alamat" class="form-label">Alamat</label>

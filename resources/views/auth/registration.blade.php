@@ -96,7 +96,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Register Basic - Pages | Sneat - Bootstrap 5 HTML Admin Template - Pro</title>
+    <title>Register Kinerja Pegawai</title>
 
     <meta name="description" content="" />
 
@@ -144,8 +144,8 @@
             <div class="card-body">
               <!-- Logo -->
               <div class="app-brand justify-content-center">
-                <a href="index.html" class="app-brand-link gap-2">
-                  <span class="app-brand-logo demo">
+                <a href="#" class="app-brand-link gap-2">
+                  {{-- <span class="app-brand-logo demo">
                     <svg
                       width="25"
                       viewBox="0 0 25 42"
@@ -199,13 +199,13 @@
                         </g>
                       </g>
                     </svg>
-                  </span>
-                  <span class="app-brand-text demo text-body fw-bolder">Sneat</span>
+                  </span> --}}
+                  <span class="app-brand-text demo text-body fw-bolder">KINERJA PEGAWAI</span>
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Adventure starts here 🚀</h4>
-              <p class="mb-4">Make your app management easy and fun!</p>
+              {{-- <h4 class="mb-2">Adventure starts here 🚀</h4>
+              <p class="mb-4">Make your app management easy and fun!</p> --}}
 
               <form class="mb-3" action="{{ route('register.post') }}" method="POST">
                 @csrf
@@ -253,7 +253,7 @@
 
               <p class="text-center">
                 <span>Already have an account?</span>
-                <a href="auth-login-basic.html">
+                <a href="{{route('login')}}">
                   <span>Sign in instead</span>
                 </a>
               </p>

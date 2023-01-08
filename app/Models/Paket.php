@@ -12,9 +12,13 @@ class Paket extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'no_resi'
+        ,'nama_pengirim'
+        ,'alamat_pengirim'
+        ,'no_tlpn_pengirim'
         ,'nama_penerima'
         ,'alamat'
         ,'no_tlpn_user'
         ,'berat'
+        ,'status'
     ];
 }

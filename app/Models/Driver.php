@@ -11,6 +11,7 @@ class Driver extends Model
     protected $table = 'table_drivers';
     protected $fillable = [
         'nik',
+        'foto',
         'nama_lengkap',
         'plat_nomor',
         'email',

@@ -122,9 +122,13 @@
           ></button>
         </div>
         <div class="modal-body">
-            <form action="{{route('admin/createdriver')}}" method="post">
+            <form action="{{route('admin/createdriver')}}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="col mb-5">
+                    <div class="col mb-3">
+                        <label for="image">Foto</label>
+                        <input class="form-control" type="file" id="formFile" name="image" required/>
+                    </div>
                     <div class="col mb-3">
                       <label for="nik" class="form-label">NIK</label>
                       <input type="text" name="nik" id="nik" class="form-control" placeholder="000001" required />

@@ -16,11 +16,15 @@ return new class extends Migration
         Schema::create('table_pakets', function (Blueprint $table) {
             $table->id()->unique();
             $table->string('no_resi');
-            $table->string('user_id');
+            $table->string('nama_pengirim');
+            $table->string('alamat_pengirim');
+            $table->string('no_tlpn_pengirim');
+            $table->string('nama_penerima');
             $table->text('alamat');
-            $table->string('nama_user');
+            $table->string('no_tlpn_user');
             $table->integer('berat');
             $table->timestamps();
+            $table->tinyInteger('status')->default('1');
         });
     }
 

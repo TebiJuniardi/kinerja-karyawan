@@ -24,6 +24,9 @@ class paketController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'no_resi' => 'required'
+            ,'nama_pengirim' => 'required'
+            ,'alamat_pengirim'=>'required'
+            ,'no_tlpn_pengirim'=>'required'
             ,'nama_penerima' => 'required'
             ,'alamat' => 'required'
             ,'no_tlpn' => 'required'
@@ -33,9 +36,12 @@ class paketController extends Controller
         if ($validator->fails()) {
             Alert::error($validator->messages()->all()[0])->withInput();
             return back();
-        }
+    }
 
         $insert['no_resi'] = $request->input('no_resi');
+        $insert['nama_pengirim'] = $request->input('nama_pengirim');
+        $insert['alamat_pengirim'] = $request->input('alamat_pengirim');
+        $insert['no_tlpn_pengirim'] = $request->input('no_tlpn_pengirim');
         $insert['nama_penerima'] = $request->input('nama_penerima');
         $insert['alamat'] = $request->input('alamat');
         $insert['no_tlpn_user'] = $request->input('no_tlpn');

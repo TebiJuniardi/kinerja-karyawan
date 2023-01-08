@@ -25,6 +25,7 @@ class driverController extends Controller
     public function createDriver(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'nik' => 'required',
             'nama_driver' => 'required',
             'plat_nomor' => 'required',
@@ -41,6 +42,11 @@ class driverController extends Controller
             return back();
         }
 
+        $imageName = time().'.'.$request->image->extension();
+
+        $request->image->move(public_path('images'), $imageName);
+
+        $insert['foto'] = $imageName;
         $insert['nik'] = $request->input('nik');
         $insert['nama_lengkap'] = $request->input('nama_driver');
         $insert['plat_nomor'] = $request->input('plat_nomor');
