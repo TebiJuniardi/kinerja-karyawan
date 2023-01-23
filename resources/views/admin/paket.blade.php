@@ -190,7 +190,7 @@
 <script type="text/javascript">
   function del(id) {
     Swal.fire({
-      title: 'Apakah anda yakin?'+id,
+      title: 'Apakah anda yakin?',
       text: "Data yang telah dihapus tidak dapat dikembalikan lagi!",
       icon: 'warning',
       showCancelButton: true,

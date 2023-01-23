@@ -190,7 +190,15 @@
                       </g>
                     </svg>
                   </span> --}}
-                  <span class="app-brand-text demo text-body fw-bolder">KINERJA PEGAWAI</span>
+                  <div class="row">
+                    <div>
+                        <img src="{{asset('images/asset/Logo-idexpress-removebg-preview.png')}}" class="rounded mx-auto d-block" width="70%">
+                    </div>
+                    <div>
+                        {{-- <span class="app-brand-text text-center demo text-body fw-bolder" style="align-content: center">KINERJA PEGAWAI</span> --}}
+                        <p style="text-align: center" class="app-brand-text text-center demo text-body fw-bolder">KINERJA PEGAWAI</p>
+                    </div>
+                  </div>
                 </a>
               </div>
               <!-- /Logo -->

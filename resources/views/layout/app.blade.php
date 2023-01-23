@@ -286,6 +286,8 @@
                 <div class="content-wrapper">
                     <!-- Content -->
 
+                    {{-- @yield('dashboard') --}}
+
                     @yield('body')
                     @include('sweetalert::alert')
                     <!-- / Content -->

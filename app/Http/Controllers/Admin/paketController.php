@@ -83,9 +83,6 @@ class paketController extends Controller
     {
         $no = 1;
         $data = Paket::select("*")->get();
-        return view('pelanggan.paket',[
-            'data'=>$data,
-            'no' => $no
-        ]);
+        return view('user.paket');
     }
 }
