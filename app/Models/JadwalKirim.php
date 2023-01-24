@@ -16,5 +16,7 @@ class JadwalKirim extends Model
         ,'id_driver'
         ,'id_paket'
         ,'id_customer'
+        ,'created_by'
+        ,'updated_by'
     ];
 }

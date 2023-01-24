@@ -14,12 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('table_jadwals', function (Blueprint $table) {
-            $table->string('id')->unique();
+            $table->id();
             $table->string('jadwal_pengiriman');
             $table->string('no_resi');
             $table->string('id_driver');
-            $table->text('id_paket');
-            $table->text('id_customer');
+            $table->text('id_paket')->nullable();
+            $table->text('id_customer')->nullable();
+            $table->integer('created_by')->nullable();
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

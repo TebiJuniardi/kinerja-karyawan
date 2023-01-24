@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\NotifyMail;
 use App\Models\Paket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -83,6 +85,37 @@ class paketController extends Controller
     {
         $no = 1;
         $data = Paket::select("*")->get();
+        return view('user.paket');
+    }
+
+    public function selesaiPaket(Request $request)
+    {
+        $imageName = time().'.'.$request->image->extension();
+
+        $request->image->move(public_path('paket'), $imageName);
+
+        /* Paket::where('id', $request->id)->update([
+            'status' => $request->status,
+            'attachment' => $imageName,
+        ]); */
+
+        $getdata = Paket::select("*")->where('id',$request->id)->get();
+        $mailData = [
+            "no_resi" => $getdata[0]->no_resi,
+            "dob" => "12/12/1990"
+        ];
+        Mail::to('juniarditebi@gmail.com')->send(new NotifyMail($mailData));
+
+        Alert::success('Paket Sudah Sampai');
+        return back();
+    }
+
+    public function konfirmPaket($no_resi)
+    {
+        Paket::where('no_resi', $no_resi)->update([
+            'confirm_user' => '1'
+        ]);
+
         return view('user.paket');
     }
 }

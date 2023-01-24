@@ -21,6 +21,7 @@ use App\Http\Controllers\Auth\AuthController;
 //     return view('welcome');
 // });
 
+// Route::get('/', [AuthController::class, 'dashboard'])->name('dashboard');
 Route::get('/', [AuthController::class, 'dashboard'])->name('dashboard');
 Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
@@ -29,6 +30,7 @@ Route::post('post-registration', [AuthController::class, 'postRegistration'])->n
 Route::get('dashboard', [AuthController::class, 'dashboard']);
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('paket-list', [AuthController::class, 'paket-list'])->name('paket-list');
+Route::get('send-email', [SendEmailController::class, 'index']);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::group(['prefix' => 'admin'], function () {
@@ -43,11 +45,15 @@ Route::group(['middleware' => ['auth']], function() {
         Route::get('delete-driver/{nik}', [driverController::class, 'deleteDriver']);
 
         Route::get('jadwal-pengiriman', [jadwalController::class, 'index'])->name('admin/jadwal-pengiriman');
-        Route::post('create-jadwal-pengiriman', [jadwalController::class, 'creteScheduleSent'])->name('admin/createjadwalkirim');
+        Route::post('import-jadwal-pengiriman', [jadwalController::class, 'importJadwalKirim'])->name('admin/importjadwalkirim');
     });
     Route::group(['prefix' => 'pelanggan'], function () {
         Route::get('paket', [paketController::class, 'paketPelanggan'])->name('pelanggan/status-paket');
+        Route::get('konfirm/{no_resi}', [paketController::class, 'konfirmPaket']);
 
+    });
+    Route::group(['prefix' => 'driver'], function () {
+        Route::post('selesai-paket', [paketController::class, 'selesaiPaket'])->name('driver/selesaiPaket');
     });
     // your routes
 });
