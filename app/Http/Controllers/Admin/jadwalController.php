@@ -56,7 +56,7 @@ class jadwalController extends Controller
             return response()->json(['errors' => $validator->errors()], 422);
         }
 
-        $jadwalKirim = $request->jadwalKirim;
+        $jadwalKirim = date('Y-m-d', strtotime($request->jadwalKirim));
         $file = $request->file('file_excel');
 
         $rows = Excel::toArray(new JadwalKirimImport($jadwalKirim),$file);
@@ -65,14 +65,14 @@ class jadwalController extends Controller
         foreach ($rows[0] as $row) {
             if (!empty($row[0]) && !empty($row[1])) {
                 JadwalKirim::updateOrCreate([
-                    'jadwal_pengiriman'=> date('Y-m-d', strtotime($jadwalKirim)),
+                    'jadwal_pengiriman'=> $jadwalKirim,
                     'no_resi' => $row[0],
                     'id_driver' => $row[1],
                     'created_by' => auth()->user()->id,
                     'updated_by' => auth()->user()->id,
                 ],
                 [
-                    'jadwal_pengiriman'=> date('Y-m-d', strtotime($jadwalKirim)),
+                    'jadwal_pengiriman'=> $jadwalKirim,
                     'no_resi'=> $row[0],
                     'id_driver'=> $row[1],
                     'created_by' => auth()->user()->id,

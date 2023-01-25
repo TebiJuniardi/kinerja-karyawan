@@ -155,7 +155,11 @@
                         <input type="text" name="no_tlpn_pengirim" id="no_tlpn_pengirim" class="form-control" placeholder="Type Here" required />
                     </div>
                     <div class="col mb-3">
-                      <label for="alamat" class="form-label">Alamat</label>
+                        <label for="email_pengirim" class="form-label">Email Pengirim</label>
+                        <input type="email" name="email_pengirim" id="email_pengirim" class="form-control" placeholder="Type Here" required />
+                    </div>
+                    <div class="col mb-3">
+                      <label for="alamat" class="form-label">Alamat Penerima</label>
                       <textarea class="form-control" id="alamat" name="alamat" rows="3" required></textarea>
                     </div>
                     <div class="col mb-3">
@@ -165,6 +169,10 @@
                     <div class="col mb-3">
                       <label for="no_tlpn" class="form-label">No Telepon Penerima</label>
                       <input type="text" name="no_tlpn" id="no_tlpn" class="form-control" placeholder="Type Here" required />
+                    </div>
+                    <div class="col mb-3">
+                        <label for="email_penerima" class="form-label">Email Penerima</label>
+                        <input type="email" name="email_penerima" id="email_penerima" class="form-control" placeholder="Type Here" required />
                     </div>
                     <div class="col mb-3">
                       <label for="berat" class="form-label">Berat (/Kg)</label>

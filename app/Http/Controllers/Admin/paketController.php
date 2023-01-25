@@ -48,6 +48,8 @@ class paketController extends Controller
         $insert['alamat'] = $request->input('alamat');
         $insert['no_tlpn_user'] = $request->input('no_tlpn');
         $insert['berat'] = $request->input('berat');
+        $insert['email_pengirim'] = $request->input('email_pengirim');
+        $insert['email_penerima'] = $request->input('email_penerima');
 
         $result = Paket::create($insert);
 
@@ -94,10 +96,10 @@ class paketController extends Controller
 
         $request->image->move(public_path('paket'), $imageName);
 
-        /* Paket::where('id', $request->id)->update([
+        Paket::where('id', $request->id)->update([
             'status' => $request->status,
             'attachment' => $imageName,
-        ]); */
+        ]);
 
         $getdata = Paket::select("*")->where('id',$request->id)->get();
         $mailData = [

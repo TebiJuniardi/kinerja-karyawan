@@ -15,9 +15,11 @@ class Paket extends Model
         ,'nama_pengirim'
         ,'alamat_pengirim'
         ,'no_tlpn_pengirim'
+        ,'email_pengirim'
         ,'nama_penerima'
         ,'alamat'
         ,'no_tlpn_user'
+        ,'email_penerima'
         ,'berat'
         ,'status'
     ];

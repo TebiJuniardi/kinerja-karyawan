@@ -59,24 +59,33 @@ class driverController extends Controller
         return redirect()->route('admin/driver');
     }
 
-        public function editDriver(Request $request)
-        {
-            try {
-                Driver::where('nik', $request->input('nik'))
-                ->update([
-                    'nik' => $request->input('nik'),
-                    'nama_lengkap' => $request->input('nama_driver'),
-                    'plat_nomor' => $request->input('plat_nomor'),
-                    'email' => $request->input('email'),
-                    'alamat' => $request->input('alamat')
-                ]);
-                Alert::success('Success Insert');
-                return redirect()->route('admin/driver');
-            } catch (\Throwable $e) {
-                Alert::error($e->getMessage());
-                return back();
-            }
+    public function editDriver(Request $request)
+    {
+        if ($request->image != '') {
+            $imageName = time().'.'.$request->image->extension();
+
+            $request->image->move(public_path('images'), $imageName);
+        }else{
+            $imageName = $request->imageOld;
         }
+
+        try {
+            Driver::where('nik', $request->input('nik'))
+            ->update([
+                'foto' => $imageName,
+                'nik' => $request->input('nik'),
+                'nama_lengkap' => $request->input('nama_driver'),
+                'plat_nomor' => $request->input('plat_nomor'),
+                'email' => $request->input('email'),
+                'alamat' => $request->input('alamat')
+            ]);
+            Alert::success('Success Insert');
+            return redirect()->route('admin/driver');
+        } catch (\Throwable $e) {
+            Alert::error($e->getMessage());
+            return back();
+        }
+    }
 
     public function deleteDriver($nik)
     {

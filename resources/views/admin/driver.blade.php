@@ -59,9 +59,19 @@
                                               ></button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{route('admin/editdriver')}}" method="post">
+                                                <form action="{{route('admin/editdriver')}}" method="post" enctype="multipart/form-data">
                                                     @csrf
                                                     <div class="col mb-5">
+                                                        <div class="col mb-3">
+                                                            <label for="formFile" class="form-label">Foto</label>
+                                                            <input type="file" name="image" id="image" class="form-control" />
+                                                        </div>
+                                                        @if ($row->foto != null)
+                                                            <div>
+                                                                <input type="hidden" name="imageOld" id="imageOld" value="{{$row->foto}}">
+                                                                <img src="{{ URL::to('/') }}/images/{{$row->foto}}" class="rounded" width="50%">
+                                                            </div>
+                                                        @endif
                                                         <div class="col mb-3">
                                                           <label for="nik" class="form-label">NIK</label>
                                                           <input type="text" name="nik" id="nik" class="form-control" placeholder="000001" required value="{{$row->nik}}" />
