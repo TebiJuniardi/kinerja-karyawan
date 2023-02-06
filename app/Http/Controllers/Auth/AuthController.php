@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,7 @@ class AuthController extends Controller
                         ->withSuccess('You have Successfully loggedin');
         }
 
+        Alert::error('Email/Password salah');
         return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
     }
 

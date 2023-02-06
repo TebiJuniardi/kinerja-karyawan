@@ -135,6 +135,7 @@
               <!-- Logo -->
               <div class="app-brand justify-content-center">
                 <a href="#" class="app-brand-link gap-2">
+                    @include('sweetalert::alert')
                   {{-- <span class="app-brand-logo demo">
                     <svg
                       width="25"
@@ -269,6 +270,7 @@
     <script src="{{ asset('assets/assets/vendor/libs/popper/popper.js')}}"></script>
     <script src="{{ asset('assets/assets/vendor/js/bootstrap.js')}}"></script>
     <script src="{{ asset('assets/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 
     <script src="{{ asset('assets/assets/vendor/js/menu.js')}}"></script>
     <!-- endbuild -->
