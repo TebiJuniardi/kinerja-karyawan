@@ -5,7 +5,7 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card">
-            <h5 class="card-header">Driver</h5>
+            <h5 class="card-header">Kurir</h5>
             <div class="card-body">
                 <div class="col-md-12">
                     <a href="#">
@@ -15,7 +15,7 @@
                           data-bs-toggle="modal"
                           data-bs-target="#ModalDriver"
                         >
-                          Tambah Driver
+                          Tambah Kurir
                         </button>
                     </a>
                     <p></p>
@@ -50,7 +50,7 @@
                                         <div class="modal-dialog" role="document">
                                           <div class="modal-content">
                                             <div class="modal-header">
-                                              <h5 class="modal-title" id="exampleModalLabel1">Edit Driver</h5>
+                                              <h5 class="modal-title" id="exampleModalLabel1">Edit Kurir</h5>
                                               <button
                                                 type="button"
                                                 class="btn-close"
@@ -77,7 +77,7 @@
                                                           <input type="text" name="nik" id="nik" class="form-control" placeholder="000001" required value="{{$row->nik}}" />
                                                         </div>
                                                         <div class="col mb-3">
-                                                          <label for="nama_driver" class="form-label">Nama Driver</label>
+                                                          <label for="nama_driver" class="form-label">Nama Kurir</label>
                                                           <input type="text" name="nama_driver" id="nama_driver" class="form-control" placeholder="Type Here" required value="{{$row->nama_lengkap}}" />
                                                         </div>
                                                         <div class="col mb-3">
@@ -123,7 +123,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel1">Driver</h5>
+          <h5 class="modal-title" id="exampleModalLabel1">Kurir</h5>
           <button
             type="button"
             class="btn-close"
@@ -144,7 +144,7 @@
                       <input type="text" name="nik" id="nik" class="form-control" placeholder="000001" required />
                     </div>
                     <div class="col mb-3">
-                      <label for="nama_driver" class="form-label">Nama Driver</label>
+                      <label for="nama_driver" class="form-label">Nama Kurir</label>
                       <input type="text" name="nama_driver" id="nama_driver" class="form-control" placeholder="Type Here" required />
                     </div>
                     <div class="col mb-3">

@@ -118,7 +118,7 @@
                         </ul>
                     </li>
                     <!-- Misc -->
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Driver</span></li>
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Kurir</span></li>
                     <li class="menu-item">
                         <a href="{{route('admin/jadwal-pengiriman')}}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-timer"></i>
