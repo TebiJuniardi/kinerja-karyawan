@@ -99,7 +99,7 @@
                             </li>
                             <li class="menu-item {{Route::is('admin/driver') ? 'active':''}}">
                                 <a href="{{route('admin/driver')}}" class="menu-link">
-                                    <div data-i18n="Notifications">Driver</div>
+                                    <div data-i18n="Notifications">Kurir</div>
                                 </a>
                             </li>
                         </ul>
