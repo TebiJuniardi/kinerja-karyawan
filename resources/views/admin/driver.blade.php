@@ -25,8 +25,8 @@
                                 <th>No</th>
                                 <th>Nik</th>
                                 <th>Nama</th>
-                                <th>Email</th>
                                 <th>Plat Nomor</th>
+                                <th>Email</th>
                                 <th>Alamat</th>
                                 <th>Aksi</th>
                             </tr>
