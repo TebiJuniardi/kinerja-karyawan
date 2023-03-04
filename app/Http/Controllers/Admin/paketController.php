@@ -106,7 +106,7 @@ class paketController extends Controller
             "no_resi" => $getdata[0]->no_resi,
             "dob" => "12/12/1990"
         ];
-        Mail::to('juniarditebi@gmail.com')->send(new NotifyMail($mailData));
+        Mail::to($getdata[0]->email_penerima)->send(new NotifyMail($mailData));
 
         Alert::success('Paket Sudah Sampai');
         return back();
